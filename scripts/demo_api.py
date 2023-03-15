@@ -25,7 +25,7 @@ from detector.apis import get_detector
 from Pose_Estimate.utils.vis import getTime
 
 """----------------------------- Demo options -----------------------------"""
-parser = argparse.ArgumentParser(description='AlphaPose Single-Image Demo')
+parser = argparse.ArgumentParser(description='Pose_Estimate Single-Image Demo')
 parser.add_argument('--cfg', type=str, required=True,
                     help='experiment configure file name')
 parser.add_argument('--checkpoint', type=str, required=True,
@@ -290,7 +290,7 @@ class DataWriter():
     def save(self, boxes, scores, ids, hm_data, cropped_boxes, orig_img, im_name):
         self.item = (boxes, scores, ids, hm_data, cropped_boxes, orig_img, im_name)
 
-class SingleImageAlphaPose():
+class SingleImagePose_Estimate():
     def __init__(self, args, cfg):
         self.args = args
         self.cfg = cfg
@@ -390,7 +390,7 @@ def example():
     if not os.path.exists(outputpath + '/vis'):
         os.mkdir(outputpath + '/vis')
 
-    demo = SingleImageAlphaPose(args, cfg)
+    demo = SingleImagePose_Estimate(args, cfg)
     im_name = args.inputimg    # the path to the target image
     image = cv2.cvtColor(cv2.imread(im_name), cv2.COLOR_BGR2RGB)
     pose = demo.process(im_name, image)
@@ -399,7 +399,7 @@ def example():
     cv2.imwrite(os.path.join(outputpath, 'vis', os.path.basename(im_name)), img)
     
     # if you want to vis the img:
-    # cv2.imshow("AlphaPose Demo", img)
+    # cv2.imshow("Pose_Estimate Demo", img)
     # cv2.waitKey(30)
 
     # write the result to json:

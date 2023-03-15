@@ -24,7 +24,7 @@ from Pose_Estimate.utils.webcam_detector import WebCamDetectionLoader
 from Pose_Estimate.utils.writer_smpl import DataWriterSMPL
 
 """----------------------------- Demo options -----------------------------"""
-parser = argparse.ArgumentParser(description='AlphaPose Demo')
+parser = argparse.ArgumentParser(description='Pose_Estimate Demo')
 parser.add_argument('--cfg', type=str, required=True,
                     help='experiment configure file name')
 parser.add_argument('--checkpoint', type=str, required=True,
@@ -203,9 +203,9 @@ if __name__ == "__main__":
     if args.save_video and mode != 'image':
         from Pose_Estimate.utils.writer import DEFAULT_VIDEO_SAVE_OPT as video_save_opt
         if mode == 'video':
-            video_save_opt['savepath'] = os.path.join(args.outputpath, 'AlphaPose_' + os.path.basename(input_source))
+            video_save_opt['savepath'] = os.path.join(args.outputpath, 'Pose_Estimate_' + os.path.basename(input_source))
         else:
-            video_save_opt['savepath'] = os.path.join(args.outputpath, 'AlphaPose_webcam' + str(input_source) + '.mp4')
+            video_save_opt['savepath'] = os.path.join(args.outputpath, 'Pose_Estimate_webcam' + str(input_source) + '.mp4')
         video_save_opt.update(det_loader.videoinfo)
         writer = DataWriterSMPL(cfg, args, save_video=True, video_save_opt=video_save_opt, queueSize=queueSize).start()
     else:
