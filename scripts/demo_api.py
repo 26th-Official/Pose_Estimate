@@ -15,14 +15,14 @@ import time
 import cv2
 import numpy as np
 
-from alphapose.utils.transforms import get_func_heatmap_to_coord
-from alphapose.utils.pPose_nms import pose_nms
-from alphapose.utils.presets import SimpleTransform, SimpleTransform3DSMPL
-from alphapose.utils.transforms import flip, flip_heatmap
-from alphapose.models import builder
-from alphapose.utils.config import update_config
+from Pose_Estimate.utils.transforms import get_func_heatmap_to_coord
+from Pose_Estimate.utils.pPose_nms import pose_nms
+from Pose_Estimate.utils.presets import SimpleTransform, SimpleTransform3DSMPL
+from Pose_Estimate.utils.transforms import flip, flip_heatmap
+from Pose_Estimate.models import builder
+from Pose_Estimate.utils.config import update_config
 from detector.apis import get_detector
-from alphapose.utils.vis import getTime
+from Pose_Estimate.utils.vis import getTime
 
 """----------------------------- Demo options -----------------------------"""
 parser = argparse.ArgumentParser(description='AlphaPose Single-Image Demo')
@@ -278,11 +278,11 @@ class DataWriter():
             }
 
             if hm_data.size()[1] == 49:
-                from alphapose.utils.vis import vis_frame_dense as vis_frame
+                from Pose_Estimate.utils.vis import vis_frame_dense as vis_frame
             elif self.opt.vis_fast:
-                from alphapose.utils.vis import vis_frame_fast as vis_frame
+                from Pose_Estimate.utils.vis import vis_frame_fast as vis_frame
             else:
-                from alphapose.utils.vis import vis_frame
+                from Pose_Estimate.utils.vis import vis_frame
             self.vis_frame = vis_frame
 
         return result
@@ -381,7 +381,7 @@ class SingleImageAlphaPose():
         return image
 
     def writeJson(self, final_result, outputpath, form='coco', for_eval=False):
-        from alphapose.utils.pPose_nms import write_json
+        from Pose_Estimate.utils.pPose_nms import write_json
         write_json(final_result, outputpath, form=form, for_eval=for_eval)
         print("Results have been written to json.")
 

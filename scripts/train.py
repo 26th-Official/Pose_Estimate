@@ -10,11 +10,11 @@ import torch.utils.data
 from tensorboardX import SummaryWriter
 from tqdm import tqdm
 
-from alphapose.models import builder
-from alphapose.opt import cfg, logger, opt
-from alphapose.utils.logger import board_writing, debug_writing
-from alphapose.utils.metrics import DataLogger, calc_accuracy, calc_integral_accuracy, evaluate_mAP
-from alphapose.utils.transforms import get_func_heatmap_to_coord
+from Pose_Estimate.models import builder
+from Pose_Estimate.opt import cfg, logger, opt
+from Pose_Estimate.utils.logger import board_writing, debug_writing
+from Pose_Estimate.utils.metrics import DataLogger, calc_accuracy, calc_integral_accuracy, evaluate_mAP
+from Pose_Estimate.utils.transforms import get_func_heatmap_to_coord
 
 num_gpu = torch.cuda.device_count()
 valid_batch = 1 * num_gpu

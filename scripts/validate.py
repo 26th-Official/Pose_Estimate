@@ -7,10 +7,10 @@ import torch
 from tqdm import tqdm
 import sys
 
-from alphapose.models import builder
-from alphapose.utils.config import update_config
-from alphapose.utils.metrics import evaluate_mAP
-from alphapose.utils.transforms import (flip, flip_heatmap,
+from Pose_Estimate.models import builder
+from Pose_Estimate.utils.config import update_config
+from Pose_Estimate.utils.metrics import evaluate_mAP
+from Pose_Estimate.utils.transforms import (flip, flip_heatmap,
                                         get_func_heatmap_to_coord)
 
 
@@ -133,7 +133,7 @@ def validate(m, heatmap_to_coord, batch_size=20, num_workers=20):
             kpt_json.append(data)
 
     if opt.ppose_nms:
-        from alphapose.utils.pPose_nms import ppose_nms_validate_preprocess, pose_nms, write_json
+        from Pose_Estimate.utils.pPose_nms import ppose_nms_validate_preprocess, pose_nms, write_json
         final_result = []
         tmp_data = ppose_nms_validate_preprocess(kpt_json)
         for key in tmp_data:
@@ -162,7 +162,7 @@ def validate(m, heatmap_to_coord, batch_size=20, num_workers=20):
         write_json(final_result, './exp/json/', form='coco', for_eval=True, outputfile='validate_rcnn_kpt.json')
     else:
         if opt.oks_nms:
-            from alphapose.utils.pPose_nms import oks_pose_nms
+            from Pose_Estimate.utils.pPose_nms import oks_pose_nms
             kpt_json = oks_pose_nms(kpt_json)
 
         with open('./exp/json/validate_rcnn_kpt.json', 'w') as fid:

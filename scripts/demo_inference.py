@@ -14,14 +14,14 @@ from detector.apis import get_detector
 from trackers.tracker_api import Tracker
 from trackers.tracker_cfg import cfg as tcfg
 from trackers import track
-from alphapose.models import builder
-from alphapose.utils.config import update_config
-from alphapose.utils.detector import DetectionLoader
-from alphapose.utils.file_detector import FileDetectionLoader
-from alphapose.utils.transforms import flip, flip_heatmap
-from alphapose.utils.vis import getTime
-from alphapose.utils.webcam_detector import WebCamDetectionLoader
-from alphapose.utils.writer import DataWriter
+from Pose_Estimate.models import builder
+from Pose_Estimate.utils.config import update_config
+from Pose_Estimate.utils.detector import DetectionLoader
+from Pose_Estimate.utils.file_detector import FileDetectionLoader
+from Pose_Estimate.utils.transforms import flip, flip_heatmap
+from Pose_Estimate.utils.vis import getTime
+from Pose_Estimate.utils.webcam_detector import WebCamDetectionLoader
+from Pose_Estimate.utils.writer import DataWriter
 
 """----------------------------- Demo options -----------------------------"""
 parser = argparse.ArgumentParser(description='AlphaPose Demo')
@@ -199,7 +199,7 @@ if __name__ == "__main__":
     # Init data writer
     queueSize = 2 if mode == 'webcam' else args.qsize
     if args.save_video and mode != 'image':
-        from alphapose.utils.writer import DEFAULT_VIDEO_SAVE_OPT as video_save_opt
+        from Pose_Estimate.utils.writer import DEFAULT_VIDEO_SAVE_OPT as video_save_opt
         if mode == 'video':
             video_save_opt['savepath'] = os.path.join(args.outputpath, 'AlphaPose_' + os.path.basename(input_source))
         else:
